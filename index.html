@@ -834,6 +834,36 @@ function requirePassword(sectionId) {
   100% { transform:scale(1); opacity:1; }
 }
 </style>
+/* === 모바일 최적화 강화 === */
+@media (max-width: 480px) {
+  header {
+    padding: 10px;
+  }
+
+  .hero-title {
+    font-size: 18px;
+  }
+
+  table {
+    font-size: 10px;
+    min-width: 480px;
+  }
+
+  th, td {
+    padding: 6px 6px;
+  }
+
+  .btn {
+    font-size: 10px;
+    padding: 6px 9px;
+  }
+
+  .score-layout,
+  .summary-grid,
+  .finance-layout {
+    grid-template-columns: 1fr;
+  }
+}  
 </head>
 <body class="view-mode">
   <header>
