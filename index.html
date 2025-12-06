@@ -925,7 +925,7 @@ function requirePassword(sectionId) {
             <input type="text" id="memberName" required />
           </div>
           <div class="member-form-group">
-            <label for="memberHandicap">이전 핸디</label>
+            <label for="memberHandicap">24년 핸디</label>
             <input type="number" id="memberHandicap" />
           </div>
           <div class="member-form-group">
@@ -1856,15 +1856,21 @@ function requirePassword(sectionId) {
       ms.forEach(s=>{
         const ym = getYearMonth(s.date || s.createdAt || new Date());
         if (!ym) return;
-        if (!monthly[ym]) monthly[ym]={sum:0,count:0};
+        if (!monthly[ym]) monthly[ym]={sum:0,count:0,pointSum:0};
         monthly[ym].sum += Number(s.strokes);
         monthly[ym].count += 1;
+        monthly[ym].pointSum += (s.point == null ? 0 : Number(s.point));
       });
 
       const labels = Object.keys(monthly).sort();
       const data = labels.map(ym=>{
         const m = monthly[ym];
         return m.count ? Math.round((m.sum/m.count)*10)/10 : 0;
+      });
+
+      const pointSums = labels.map(ym=>{
+        const m = monthly[ym];
+        return m.pointSum || 0;
       });
 
       // 간단한 선형 회귀로 추세선 계산 (x = 0,1,2,... / y = 월별 평균 타수)
@@ -1910,6 +1916,14 @@ function requirePassword(sectionId) {
               tension:0.25
             , borderColor:"#4FC3F7", borderWidth:3, pointBackgroundColor:"#4FC3F7"},
             {
+              type:"bar",
+              label: memberName + " 월별 포인트 합계",
+              data: pointSums,
+              backgroundColor:"#A5D6A7",
+              borderWidth:0,
+              yAxisID:"y1"
+            },
+            {
               label: memberName + " 추세선",
               data: trendData,
               fill:false,
@@ -1933,6 +1947,7 @@ function requirePassword(sectionId) {
           maintainAspectRatio:false,
           scales:{
             y:{title:{display:true,text:"타수"}},
+            y1:{position:"right",title:{display:true,text:"포인트 합계"},grid:{drawOnChartArea:false}},
             x:{title:{display:true,text:"월 (YYYY-MM)"}}
           }
         }
