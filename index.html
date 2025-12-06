@@ -834,36 +834,6 @@ function requirePassword(sectionId) {
   100% { transform:scale(1); opacity:1; }
 }
 </style>
-/* === 모바일 최적화 강화 === */
-@media (max-width: 480px) {
-  header {
-    padding: 10px;
-  }
-
-  .hero-title {
-    font-size: 18px;
-  }
-
-  table {
-    font-size: 10px;
-    min-width: 480px;
-  }
-
-  th, td {
-    padding: 6px 6px;
-  }
-
-  .btn {
-    font-size: 10px;
-    padding: 6px 9px;
-  }
-
-  .score-layout,
-  .summary-grid,
-  .finance-layout {
-    grid-template-columns: 1fr;
-  }
-}  
 </head>
 <body class="view-mode">
   <header>
@@ -955,7 +925,7 @@ function requirePassword(sectionId) {
             <input type="text" id="memberName" required />
           </div>
           <div class="member-form-group">
-            <label for="memberHandicap">이전 핸디</label>
+            <label for="memberHandicap">24년 핸디</label>
             <input type="number" id="memberHandicap" />
           </div>
           <div class="member-form-group">
@@ -1056,6 +1026,7 @@ function requirePassword(sectionId) {
                     <th>날짜</th>
                     <th>월</th>
                     <th>타수</th>
+<th>포인트</th>
                     <th style="width:70px;">관리</th>
                   </tr>
                 </thead>
@@ -1265,7 +1236,7 @@ function requirePassword(sectionId) {
           <label>이름
             <input type="text" id="editMemberName" style="width:100%;margin-top:2px;padding:6px 8px;border-radius:7px;border:1px solid var(--border-soft);background:rgba(255,255,255,0.92);" />
           </label>
-          <label>이전 핸디
+          <label>24년 핸디
             <input type="number" id="editMemberHandicap" style="width:100%;margin-top:2px;padding:6px 8px;border-radius:7px;border:1px solid var(--border-soft);background:rgba(255,255,255,0.92);" />
           </label>
           <label>적용 핸디
